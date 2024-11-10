@@ -1,4 +1,3 @@
-# summarize_agent.py
 from transformers import pipeline
 
 summarizer = pipeline("summarization")

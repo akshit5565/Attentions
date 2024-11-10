@@ -1,4 +1,3 @@
-# database.py
 from neo4j import GraphDatabase
 
 class Neo4jConnection:
@@ -12,5 +11,4 @@ class Neo4jConnection:
         with self._driver.session() as session:
             return session.run(query, parameters)
 
-# Update the URI, user, and password with the correct credentials
 neo4j_conn = Neo4jConnection(uri="bolt://localhost:7687", user="neo4j", password="14eb024649811a644153c077197977cf31104a8a485e14f85178d94d93311717")

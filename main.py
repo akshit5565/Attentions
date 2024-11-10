@@ -8,15 +8,12 @@ from future_works_agent import generate_future_works
 
 app = FastAPI()
 
-# Root endpoint to confirm the API is running
 @app.get("/")
 def read_root():
     return {"message": "Academic Research Assistant API is running"}
 
-# Endpoint to search for papers based on a topic
 @app.get("/search")
 def search(topic: str):
-    # Temporary simplified query without topic filtering
     query = """
     MATCH (p:Paper)
     RETURN p.title AS title, p.authors AS authors, p.year AS year, p.summary AS summary
@@ -25,7 +22,6 @@ def search(topic: str):
     results = [{"title": record["title"], "authors": record["authors"], "year": record["year"], "summary": record["summary"]} for record in papers]
     return {"papers": results}
 
-# Endpoint to summarize papers for a given topic
 @app.get("/summarize")
 def summarize(topic: str):
     query = """
@@ -36,7 +32,6 @@ def summarize(topic: str):
     summaries = summarize_papers([{"title": record["title"], "authors": record["authors"], "year": record["year"], "summary": record["summary"]} for record in papers])
     return {"summaries": summaries}
 
-# Endpoint to answer a question based on papers related to a topic
 @app.get("/qa")
 def question_answering(topic: str, question: str):
     try:
@@ -52,7 +47,6 @@ def question_answering(topic: str, question: str):
         print("Error in question-answering endpoint:", e)
         return {"error": str(e)}
 
-# Endpoint to suggest future research directions based on papers for a topic
 @app.get("/future_works")
 def future_works(topic: str):
     query = """

@@ -1,4 +1,3 @@
-# test_connection.py
 from neo4j import GraphDatabase
 
 def test_connection():
